@@ -1,0 +1,22 @@
+.transport-flow {
+    width: 504px;
+    height: 413px;
+    border-radius: 15px;
+    box-shadow: 0 4px 7.4px 0.6px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.add-waypoint {
+    border: 0;
+    padding: 8px 15px 8px 15px;
+    border-radius: 5px;
+    background: #e6274d;
+    color: #fff;
+}
+
+.add-waypoint:hover {
+    background: #dc143c;
+}
