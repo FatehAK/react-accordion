@@ -16,3 +16,4 @@ ReactDOM.render(
 );
 
 serviceWorker.unregister();
+console.log('foo');
