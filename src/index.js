@@ -11,6 +11,7 @@ ReactDOM.render(
     <BrowserRouter>
         <Route exact path="/" component={App} />
     </BrowserRouter>,
+
     rootElement
 );
 
