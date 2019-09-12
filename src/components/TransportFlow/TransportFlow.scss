@@ -1,22 +1,35 @@
 .transport-flow {
-    width: 504px;
-    height: 413px;
-    border-radius: 15px;
-    box-shadow: 0 4px 7.4px 0.6px rgba(0, 0, 0, 0.2);
-    background-color: #f0f0f0;
+    max-width: 504px;
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
     padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 7.4px 0.6px rgba(0, 0, 0, 0.2);
+}
+
+.add-waypoint-wrap {
+    text-align: right;
 }
 
 .add-waypoint {
     border: 0;
-    padding: 8px 15px 8px 15px;
-    border-radius: 5px;
-    background: #e6274d;
-    color: #fff;
+    padding: 0;
+    color: #0acc60;
+    background: rgba(0, 0, 0, 0);
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
-.add-waypoint:hover {
-    background: #dc143c;
+.add-waypoint > span {
+    margin: 0 6px 0 0;
+}
+
+.add-waypoint > img {
+    margin: -3px 0 0 0;
+}
+
+.add-waypoint:focus {
+    outline: none;
 }
