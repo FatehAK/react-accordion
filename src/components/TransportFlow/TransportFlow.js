@@ -43,9 +43,7 @@ class TransportFlow extends React.Component {
         }));
 
         //handle edge case when removing last panel in the list
-        const removedCount = parseInt(panelToRemove.replace(/[^\d.]/g, ''));
-        const endCount = parseInt(this.state.end.replace(/[^\d.]/g, ''));
-        if (endCount === removedCount) {
+        if (this.state.end === panelToRemove) {
             this.setState((prevState) => ({
                 end: prevState.panels[prevState.panels.length - 1]
             }));
