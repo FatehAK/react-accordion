@@ -1,9 +1,6 @@
 import React from 'react';
 import Panel from './Panel';
 import plus from '../../img/plus.svg';
-import green_dot from '../../img/green_dot.svg';
-import yellow_dot from '../../img/yellow_dot.svg';
-import red_dot from '../../img/red_dot.svg';
 import './TransportFlow.scss';
 
 class TransportFlow extends React.Component {
@@ -11,13 +8,16 @@ class TransportFlow extends React.Component {
         super(props);
         this.state = {
             expanded: false,
-            panels: [],
-            count: 1,
+            panels: ['panel1', 'panel2'],
+            count: 3,
+            start: 'panel1',
+            end: 'panel2'
         };
         this.removePanel = this.removePanel.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange = (panel) => {
+    handleChange(panel) {
         return (evt, isExpanded) => {
             if (isExpanded) {
                 this.setState({ expanded: panel });
@@ -30,24 +30,41 @@ class TransportFlow extends React.Component {
     addPanel() {
         this.setState((prevState) => ({
             panels: [...prevState.panels, `panel${this.state.count}`],
-            count: prevState.count + 1
+            count: prevState.count + 1,
+            end: `panel${this.state.count}`
         }));
     }
 
-    removePanel(panelToRemove) {
+    removePanel(evt, panelToRemove) {
+        evt.stopPropagation();
+
         this.setState((prevState) => ({
             panels: prevState.panels.filter((panel) => panel !== panelToRemove)
         }));
+
+        //handle edge case when removing last panel in the list
+        const removedCount = parseInt(panelToRemove.replace(/[^\d.]/g, ''));
+        const endCount = parseInt(this.state.end.replace(/[^\d.]/g, ''));
+        if (endCount === removedCount) {
+            this.setState((prevState) => ({
+                end: prevState.panels[prevState.panels.length - 1]
+            }));
+        }
     }
 
     render() {
-        console.log(this.state.panels);
         return (
             <div className="transport-flow">
-                <Panel panel="srcPanel" expanded={this.state.expanded} handleChange={this.handleChange} />
-                <Panel panel="destPanel" expanded={this.state.expanded} handleChange={this.handleChange} />
-                {(this.state.panels.length > 0) && (this.state.panels.map((panel) => (
-                    <Panel key={panel} allPanels={this.state.panels} panel={panel} expanded={this.state.expanded} handleChange={this.handleChange} removePanel={this.removePanel} />
+                {(this.state.panels.map((panel) => (
+                    <Panel
+                        key={panel}
+                        panel={panel}
+                        expanded={this.state.expanded}
+                        start={this.state.start}
+                        end={this.state.end}
+                        handleChange={this.handleChange}
+                        removePanel={this.removePanel}
+                    />
                 )))}
                 <div className="add-waypoint-wrap">
                     <button className="add-waypoint" onClick={() => this.addPanel()}>
