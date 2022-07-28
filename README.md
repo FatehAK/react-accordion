@@ -1,2 +1,3 @@
-# accordion-react
-An accordion in React
+# React Accordion
+
+A custom made accordion component built in React.js
